@@ -1,4 +1,4 @@
-# [unrated] 길이에 따른 연산 - 181879 
+# [level 0] 길이에 따른 연산 - 181879 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181879) 
 
