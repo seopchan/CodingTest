@@ -13,6 +13,7 @@ vector<string> solution(vector<string> players, vector<string> callings) {
     for (const string& call: callings) {
         if (pla.find(call) != pla.end()) {
             int n = pla[call];
+            
             if (n > 0) {
                 string tmp = players[n-1];
                 players[n-1] = players[n];
