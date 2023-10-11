@@ -13,7 +13,7 @@ bool cmp(string a, string b) {
 
 vector<string> solution(vector<string> strings, int n) {
     N = n;
-    stable_sort(strings.begin(), strings.end());
+    sort(strings.begin(), strings.end());
     stable_sort(strings.begin(), strings.end(), cmp);
     
     return strings;
