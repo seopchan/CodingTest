@@ -1,4 +1,2 @@
-SELECT price as MAX_PRICE
+SELECT MAX(price) as MAX_PRICE
 FROM product
-ORDER BY price DESC
-LIMIT 1
