@@ -7,4 +7,4 @@ FROM (
     FROM offline_sale
 ) as u
 WHERE YEAR(u.sales_date) = 2022 AND MONTH(u.sales_date) = 3
-ORDER BY sales_date ASC, product_id ASC, user_id ASC
+ORDER BY sales_date, product_id, user_id ASC
