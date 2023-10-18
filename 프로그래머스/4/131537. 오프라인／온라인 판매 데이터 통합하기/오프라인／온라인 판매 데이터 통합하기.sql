@@ -2,7 +2,7 @@ SELECT date_format(u.sales_date, "%Y-%m-%d") as sales_date, product_id, user_id,
 FROM (
     SELECT sales_date, product_id, user_id, sales_amount
     FROM online_sale
-    UNION 
+    UNION ALL
     SELECT sales_date, product_id, NULL user_id, sales_amount
     FROM offline_sale
 ) as u
