@@ -1,30 +1,18 @@
 function solution(n, lost, reserve) {
-    let ans = n;
     lost.sort((a, b) => a - b);
     reserve.sort((a, b) => a - b);
     
-    for (const l of lost) {
-        for (const r of reserve) {
-            if (l == r) {
-                reserve.splice(reserve.indexOf(r), 1)
-                lost.splice(lost.indexOf(l), 1)
-            }
-        }    
-    }
+    let realLost = lost.filter(l => !reserve.includes(l));
+    let realReserve = reserve.filter(r => !lost.includes(r));
     
-    for (let i=1; i<=n; i++) {
-        if (lost.find(l => l==i)) {
-            if (reserve.find(r => r == i)) {
-                reserve.splice(reserve.indexOf(i), 1)
-            } else if (reserve.find(r => r == i - 1)) {
-                reserve.splice(reserve.indexOf(i - 1), 1)
-            } else if (reserve.find(r => r == i + 1)) {
-                reserve.splice(reserve.indexOf(i + 1), 1)
-            } else {
-                ans--
-            }
+    for (let i = 0; i < realLost.length; i++) {
+        if (realReserve.includes(realLost[i] - 1)) {
+            realReserve.splice(realReserve.indexOf(realLost[i] - 1), 1);
+        } else if (realReserve.includes(realLost[i] + 1)) {
+            realReserve.splice(realReserve.indexOf(realLost[i] + 1), 1);
+        } else {
+            n--;
         }
     }
-    
-    return ans;
+    return n;
 }
