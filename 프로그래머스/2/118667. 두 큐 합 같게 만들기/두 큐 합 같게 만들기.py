@@ -15,7 +15,7 @@ def solution(queue1, queue2):
     
     count = 0
     while q1 != q2:
-        if q1 == 0 or q2 == 0 or count < l * 4:
+        if q1 == 0 or q2 == 0 or count > l * 4:
             count = -1
             break
         
