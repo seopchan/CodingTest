@@ -1,10 +1,8 @@
 def solution(arr):
-    answer = [arr[0]]
-    pointer = 0
+    answer = []
     
-    for e in arr[1:]:
-        if answer[pointer] != e:
-            pointer += 1
+    for e in arr:
+        if answer[-1:] != [e]:
             answer.append(e)
     
     return answer
