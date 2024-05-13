@@ -1,4 +1,4 @@
-def solution(a, b):
+def solution1(a, b):
     if b < a:
         a, b = b, a
     
@@ -7,3 +7,6 @@ def solution(a, b):
         sum_val += i
         
     return sum_val
+
+def solution(a, b):
+    return (abs(a - b) + 1) * (a + b) / 2
