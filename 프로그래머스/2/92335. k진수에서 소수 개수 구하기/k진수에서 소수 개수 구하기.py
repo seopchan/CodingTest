@@ -1,14 +1,14 @@
 import math
 
-def solution(n, k):
-    def is_prime(x):
+def is_prime(x):
         if x == 1:
             return False
         
         for i in range(2, int(math.sqrt(x)) + 1):
             if x % i == 0: return False
         return True
-    
+
+def solution(n, k):
     tmp = ''
     while n > 0:
         n, mod = divmod(n, k)
@@ -21,3 +21,4 @@ def solution(n, k):
         if is_prime(int(n)): answer += 1
     
     return answer
+
