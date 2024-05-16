@@ -16,15 +16,12 @@ def solution(k, ranges):
         areas.append(calc_space(seq[-1], k))
         seq.append(k)
         
-    print(areas)
     answer = []    
-    for a, b in ranges:
-        if n + b < a:
-            answer.append(-1)
-            continue
-        
+    for a, b in ranges:    
         if a == 0 and b == 0:
             answer.append(sum(areas))
+        elif n + b < a:
+            answer.append(-1)
         else:
             answer.append(sum(areas[a:n+b]))
 
