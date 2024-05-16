@@ -23,7 +23,6 @@ def solution(board):
     while q:
         r, c = q.popleft()
         
-        # 현재 위치에서 할 일
         # 도착지점인지 확인
         if r == gr and c == gc:
             break;
@@ -39,8 +38,5 @@ def solution(board):
             if 0 <= nr < n and 0 <= nc < m and visited[nr][nc] == -1:
                 q.append((nr, nc))
                 visited[nr][nc] = visited[r][c] + 1
-    
-    for i in visited:
-        print(i)
     
     return visited[gr][gc]
