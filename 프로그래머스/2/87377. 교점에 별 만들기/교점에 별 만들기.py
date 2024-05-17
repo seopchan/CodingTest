@@ -16,9 +16,6 @@ def solution(line):
                 if x % 1 == 0 and y % 1 == 0:
                     point.add((int(x), int(y)))
     
-    if not point:
-        return []
-    
     # 최소 크기를 위한 좌표 구하기
     min_x = min(point, key=lambda p: p[0])[0]
     min_y = min(point, key=lambda p: p[1])[1]
