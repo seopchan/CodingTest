@@ -15,7 +15,6 @@ def solution(n, info):
         # 모든 점수 확인
         if score_idx == 11:
             # 화살이 남았으면, 남은 화살은 모두 0점
-            print("hit!")
             if arrows < n:
                 lion[10] += n - arrows
                 
