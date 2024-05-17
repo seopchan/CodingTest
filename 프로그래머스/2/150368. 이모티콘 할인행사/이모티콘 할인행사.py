@@ -1,32 +1,26 @@
+from itertools import product
+
 def solution(users, emoticons):
     discount_rates = [10, 20, 30, 40]
-    n = len(users)
-    m = len(emoticons)
-    best_result = [0, 0]
+    result = [0, 0]
 
-    def dfs(idx, discounts):
-        nonlocal best_result
+    all_combinations = product(discount_rates, repeat=len(emoticons))
 
-        if idx == m:
-            subscribers = 0
-            total_sales = 0
-            for user in users:
-                user_rate, user_limit = user
-                user_spent = 0
-                for i in range(m):
-                    if discounts[i] >= user_rate:
-                        user_spent += emoticons[i] * (100 - discounts[i]) // 100
-                if user_spent >= user_limit:
-                    subscribers += 1
-                else:
-                    total_sales += user_spent
-            
-            if subscribers > best_result[0] or (subscribers == best_result[0] and total_sales > best_result[1]):
-                best_result = [subscribers, total_sales]
-            return
+    for discounts in all_combinations:
+        subs = 0
+        sales = 0
 
-        for rate in discount_rates:
-            dfs(idx + 1, discounts + [rate])
+        for user_rate, user_limit in users:
+            spent = 0
+            for i in range(len(emoticons)):
+                if discounts[i] >= user_rate:
+                    spent += emoticons[i] * (100 - discounts[i]) // 100
+            if spent >= user_limit:
+                subs += 1
+            else:
+                sales += spent
 
-    dfs(0, [])
-    return best_result
+        if (subs > result[0]) or (subs == result[0] and sales > result[1]):
+            result = [subs, sales]
+
+    return result
