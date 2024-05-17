@@ -30,6 +30,4 @@ def solution(line):
     for x, y in point:
         matrix[max_y - y][x - min_x] = '*'
     
-    result = [''.join(row) for row in matrix]
-    
-    return result
+    return [''.join(row) for row in matrix]
