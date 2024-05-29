@@ -4,9 +4,9 @@ CONSONANTS = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ"
 N = int(input().strip())
 answers = ['y\n'] * N
 check4Result = [False] * N
-chats = [""] * N
+chats = []
 for i in range(N):
-    chats[i] = input()
+    chats.append(input())
 
 def check5(line):
     count = 0
