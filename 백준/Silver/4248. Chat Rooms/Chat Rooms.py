@@ -1,12 +1,11 @@
-VOWELS = "aeiouyAEIOUY"
 CONSONANTS = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ"
 
 N = int(input().strip())
-answers = ['y\n'] * N
+answers = ['y'] * N
 check4Result = [False] * N
-chats = []
+chats = [""] * N
 for i in range(N):
-    chats.append(input())
+    chats[i] = input()
 
 def check5(line):
     count = 0
@@ -43,14 +42,8 @@ def checkTwice(line, index):
     else: return False
 
 for i, line in enumerate(chats):
-    if check5(line):
-        answers[i] = 'n\n'
-        continue
+    if check5(line) or check4(line, i) or checkTwice(line, i):
+        answers[i] = 'n'
 
-    if check4(line, i):
-        answers[i] = 'n\n'
 
-    if checkTwice(line, i):
-        answers[i] = 'n\n'
-
-print(''.join(answers))
+print('\n'.join(answers))
