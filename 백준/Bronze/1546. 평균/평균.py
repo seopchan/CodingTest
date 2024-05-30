@@ -7,9 +7,9 @@ N = sys.stdin.readline()
 scores = list(map(int, sys.stdin.readline().split()))
 M = max(scores)
 
-newScores = []
+sumVal = 0
 for score in scores:
-    newScores.append(score / M * 100)
+    sumVal += score / M * 100
 
-avg = sum(newScores) / len(scores)
+avg = sumVal / len(scores)
 print(avg)
