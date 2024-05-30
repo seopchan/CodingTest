@@ -1,5 +1,4 @@
-# 숫자를 1개씩 영어로 읽기
-# 사전순으로 정렬
+# 튜플을 사용해 코드 간소화
 
 from sys import stdin
 
@@ -16,21 +15,17 @@ numDic = {
     '9': 'nine'
 }
 
-start, end = list(map(int, stdin.readline().split()))
+start, end = map(int, stdin.readline().split())
 
-changedList = []
-changedDic = {}
-for n in range(start, end + 1):
-    numList = []
-    for char in str(n):
-        numList.append(numDic[char])
-    
-    changed = ' '.join(numList)
-    changedDic[changed] = n
-    changedList.append(changed)
+# 숫자를 영어로 변환하고 (영어, 숫자) 형태로 리스트에 저장
+changedList = [
+    (' '.join(numDic[char] for char in str(n)), n)
+    for n in range(start, end + 1)
+]
 
 changedList.sort()
-for i, numStr in enumerate(changedList):
-    print(changedDic[numStr], end=' ')
+
+for i, (numStr, originalNum) in enumerate(changedList):
+    print(originalNum, end=' ')
     if i % 10 == 9:
         print()
