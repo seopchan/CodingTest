@@ -8,16 +8,16 @@ from sys import stdin
 
 n, m = map(int, stdin.readline().split())
 
-neverHeard, neverSeen = set(), set()
-
+neverHeard = set()
 for _ in range(n):
     neverHeard.add(stdin.readline().strip())
 
+neverHeardSeen = set()
 for _ in range(m):
-    neverSeen.add(stdin.readline().strip())
-
-neverHeardSeen = sorted(neverHeard & neverSeen)
+    name = stdin.readline().strip()
+    if name in neverHeard:
+        neverHeardSeen.add(name)
 
 print(len(neverHeardSeen))
-for name in neverHeardSeen:
+for name in sorted(neverHeardSeen):
     print(name)
