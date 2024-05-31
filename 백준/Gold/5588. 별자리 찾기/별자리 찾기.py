@@ -8,8 +8,6 @@
 # 기준점과 2번의 별의 차이만큼 1번을 이동
 
 from sys import stdin
-from collections import defaultdict
-MAX = 1000000
 
 # 별자리 배열에 저장
 N = int(stdin.readline())
