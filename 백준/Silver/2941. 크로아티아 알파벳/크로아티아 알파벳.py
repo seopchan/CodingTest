@@ -7,34 +7,27 @@
 from sys import stdin
 
 string = list(stdin.readline().strip())
-string.reverse()
-
+length = len(string)
 alpha = 0
 i = 0
-while string:
-    char = string.pop()
+
+while i < length:
+    char = string[i]
     alpha += 1
-    if string:
-        if char == 'c':
-            nextChar = string[-1]
-            if nextChar == '=' or nextChar == '-':
-                string.pop()
+    
+    if i + 1 < length:
+        if char == 'c' and (string[i + 1] == '=' or string[i + 1] == '-'):
+            i += 1
         elif char == 'd':
-            nextChar = string[-1]
-            if nextChar == '-':
-                string.pop()
-            elif len(string) >= 2 and nextChar == 'z':
-                nextnextChar = string[-2]
-                if nextnextChar == '=':
-                    string.pop()
-                    string.pop()
-        elif char == 'l' or char == 'n':
-            nextChar = string[-1]
-            if nextChar == 'j':
-                string.pop()
-        elif char == 's' or char == 'z':
-            nextChar = string[-1]
-            if nextChar == '=':
-                string.pop()
+            if string[i + 1] == '-':
+                i += 1
+            elif i + 2 < length and string[i + 1] == 'z' and string[i + 2] == '=':
+                i += 2
+        elif (char == 'l' or char == 'n') and string[i + 1] == 'j':
+            i += 1
+        elif (char == 's' or char == 'z') and string[i + 1] == '=':
+            i += 1
+    
+    i += 1
     
 print(alpha)
