@@ -14,7 +14,7 @@ r = 31
 M = 1234567891
 
 def fn(num, i):
-    return (num * (r ** i))
+    return num * ((r ** i))
 
 def alphaToNum(c):
     return ord(c) - 96
@@ -22,11 +22,11 @@ def alphaToNum(c):
 def main(string):
     sum = 0
     for i, c in enumerate(string):
-        sum += fn(alphaToNum(c), i) % M
+        num = fn(alphaToNum(c), i)
+        sum += num
     
-    print(sum)
+    print(sum % M)
     
-
 L = int(stdin.readline())
 string = stdin.readline().strip()
 main(string)
