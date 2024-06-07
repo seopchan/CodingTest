@@ -3,9 +3,5 @@
 N = int(input())
 arr = list(map(int, input().strip().split()))
 
-sortedArr = sorted(set(arr))
-ziped = {n: i for i, n in enumerate(sortedArr)}
-
-answer = [ziped[n] for n in arr]
-
-print(' '.join(map(str, answer)))
+ziped = {n: i for i, n in enumerate(sorted(set(arr)))}
+print(' '.join([str(ziped[n]) for n in arr]))
