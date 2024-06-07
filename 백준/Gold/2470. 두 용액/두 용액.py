@@ -12,26 +12,20 @@
 """
 투포인터
 """
-def find_closest_to_zero(n, solutions):
-    # 용액 리스트 정렬
-    solutions.sort()
-    
-    # 두 포인터 초기화
+def find_closest_to_zero(n, num):
     left = 0
     right = n - 1
     
-    # 초기값 설정
     closest_sum = float('inf')
-    best_pair = (solutions[left], solutions[right])
+    pair = (num[left], num[right])
     
-    # 투 포인터를 이용해 최적의 두 용액을 찾는다
     while left < right:
-        current_sum = solutions[left] + solutions[right]
+        current_sum = num[left] + num[right]
         
         # 현재의 합이 더 0에 가까우면 갱신
         if abs(current_sum) < abs(closest_sum):
             closest_sum = current_sum
-            best_pair = (solutions[left], solutions[right])
+            pair = (num[left], num[right])
         
         # 합이 0보다 크면 오른쪽 포인터를 왼쪽으로 이동
         if current_sum > 0:
@@ -39,16 +33,15 @@ def find_closest_to_zero(n, solutions):
         # 합이 0보다 작으면 왼쪽 포인터를 오른쪽으로 이동
         elif current_sum < 0:
             left += 1
-        # 합이 정확히 0이면 더 이상의 탐색이 필요없다
+        # 합이 정확히 0이면 탐색 종료
         else:
             break
     
-    return best_pair
+    return pair
 
-# 입력 처리
-n = int(input())
+N = int(input())
 solutions = list(map(int, input().split()))
 
-# 결과 계산 및 출력
-result = find_closest_to_zero(n, solutions)
-print(result[0], result[1])
+solutions.sort()
+answer = find_closest_to_zero(N, solutions)
+print(answer[0], answer[1])
