@@ -11,14 +11,13 @@ def binarySearch(arr, target):
         mid = left + (right - left) // 2
 
         if arr[mid] == target:
-            print(1, end=' ')
-            return mid
+            return '1'
         elif arr[mid] < target:
             left = mid + 1
         else:
             right = mid - 1
 
-    print(0, end=' ')
+    return '0'
 
 N = int(input())
 cards = list(map(int, input().strip().split()))
@@ -26,5 +25,7 @@ M = int(input())
 targets = map(int, input().strip().split())
 
 cards.sort()
+answer = []
 for target in targets:
-    binarySearch(cards, target)
+    answer.append(binarySearch(cards, target))
+print(' '.join(answer))
