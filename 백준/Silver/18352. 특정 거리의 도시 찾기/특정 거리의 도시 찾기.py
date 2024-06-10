@@ -15,24 +15,30 @@ from collections import deque, defaultdict
 import sys
 input = sys.stdin.readline
 
-def bfs(N, X, graph):
-    # 모든 도시에 대한 최단거리를 초기화
-    visited = [-1] * (N + 1)
-    visited[X] = 0 # 시작도시의 거리는 0
-
+def bfs(K, X, graph):
+    # 방문 내역을 딕셔너리로 관리
+    visited = {X: 0}
     que = deque([X])
+    distanceK = []
 
     while que:
         currentCity = que.popleft()
 
         for nextCity in graph[currentCity]:
-            if visited[nextCity] == -1: # 방문하지 않은 도시
-                visited[nextCity] = visited[currentCity] + 1
-                que.append(nextCity)
+            if nextCity not in visited: # 방문하지 않은 도시
+                newDistance = visited[currentCity] + 1
+                visited[nextCity] = newDistance
+                # 거리가 정확하게 K인 도시만 별도로 저장
+                if newDistance == K:
+                    distanceK.append(nextCity)
+                
+                # 거리가 K 이상이 되면 탐색 중지
+                if newDistance < K:
+                    que.append(nextCity)
 
-    return visited
+    return distanceK
 
-def main(N, K, X, roads):
+def main(K, X, roads):
     graph = defaultdict(list)
 
     # 그래프를 인접리스트로 표현
@@ -40,16 +46,14 @@ def main(N, K, X, roads):
         graph[a].append(b)
 
     # BFS로 각 도시까지의 최단 거리 계산
-    distance = bfs(N, X, graph)
+    distanceK = sorted(bfs(K, X, graph))
 
-    answer = sorted([city for city in range(1, N + 1) if distance[city] == K])
-
-    if answer:
-        for city in answer: print(city)
+    if distanceK:
+        for city in distanceK: print(city)
     else:
         print(-1)
 
 # 데이터 입력
 N, M, K, X = map(int, input().split())
 roads = [tuple(map(int, input().strip().split())) for _ in range(M)]
-main(N, K, X, roads)
+main(K, X, roads)
