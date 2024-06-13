@@ -24,19 +24,6 @@ def rotate(direction, angle):
     else:
         return sumAngle
     
-def findRectangle(coords):
-    minX = minY = float('inf')
-    maxX = maxY = float('-inf')
-
-    for x, y in coords:
-        if x < minX: minX = x
-        if y < minY: minY = y
-        if x > maxX: maxX = x
-        if y > maxY: maxY = y
-
-    width, height = maxX - minX, maxY - minY
-    return width, height
-
 def main(command):
     turtle = [0, 0]
     direction = 0
@@ -48,18 +35,20 @@ def main(command):
         270: {'F': (-1, 0), 'B':(1, 0) }
     }
 
-    area = []
-    area.append(tuple(turtle))
+    minX = minY = maxX = maxY = 0
     for c in command:
         if c in 'FB':
             move(turtle, moves[direction][c])
-            area.append(tuple(turtle))
+            x, y = turtle
+            if x < minX: minX = x
+            if y < minY: minY = y
+            if x > maxX: maxX = x
+            if y > maxY: maxY = y
         elif c in 'LR':
             angle = -90 if c == 'L' else 90
             direction = rotate(direction, angle)
 
-    width, height = findRectangle(area)
-    print(width * height)
+    print((maxX - minX) * (maxY - minY))
         
 case = int(input().strip())
 commands = [input().strip() for _ in range(case)]
