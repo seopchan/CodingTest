@@ -22,7 +22,7 @@ def getTotalMoneyWithLimit(moneys, limit):
     return totalMoney
 
 def binarySearch(moneys, maxMoney):
-    left, right = 1, MAX_VAL
+    left, right = 1, maxMoney
     limitMoney = 0
 
     while left <= right:
